@@ -1,0 +1,63 @@
+\documentclass{article}
+\usepackage{fullpage}
+\usepackage{enumitem}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{titling}
+
+\everymath{\displaystyle}
+
+\begin{document}
+\setlength{\droptitle}{-7em}
+
+
+\title{SICP Exercise 1.13}
+\author{Cameron Franz}
+
+\newcommand{\Fib}{\text{Fib}}
+
+\maketitle
+\noindent
+\textbf{Fibonacci Definition}: \\ \\
+$
+	\Fib(n) = \begin{cases}
+		0, & n=0 \\
+		1, & n=1 \\
+		\Fib(n-2) + \Fib(n-1), & n>1 
+	\end{cases}
+$
+\\ \\
+\textbf{Assertion}: \\ \\
+$
+	\Fib(n) = \frac{\phi^n-\psi^n}{\sqrt{5}}, \text{ where } \phi = \frac{1 + \sqrt{5}}{2} \text{ and } \psi = \frac{1 - \sqrt{5}}{2}
+$
+\\ \\
+\textbf{Proof}: \\ \\
+$
+\phi \cdot \psi = \frac{1 - 5}{4} = -1
+\\ \\
+\phi + \psi = \frac{2}{2} = 1
+\\ \\
+\Fib(0) = \frac{\phi^0-\psi^0}{\sqrt{5}} = 0
+\\ \\
+\Fib(1) = \frac{\phi^1-\psi^1}{\sqrt{5}} = \frac{\sqrt{5}}{\sqrt{5}} =1
+\\ \\
+\begin{aligned}
+\Fib(n) & = \frac{\phi^n-\psi^n}{\sqrt{5}} \\ 
+		& = \frac{\phi^{n-1}\phi - \psi^{n-1}\psi}{\sqrt{5}} \\
+		& = \frac{\phi^{n-1}(1-\psi)-\psi^{n-1}(1-\phi)}{\sqrt{5}} \\
+		& = \frac{\phi^{n-1}-\phi^{n-1}\psi - \psi^{n-1}+\psi^{n-1}\phi}{\sqrt{5}} \\
+		& = \frac{\phi^{n-1} + \phi^{n-2}-\psi^{n-1}-\psi^{n-2}}{\sqrt{5}} \\
+		& = \frac{\phi ^ {n-1} - \psi ^ {n-1}}{\sqrt{5}} + \frac{\phi ^ {n-2} - \psi ^ {n-2}}{\sqrt{5}} \\
+		& = \Fib(n-2) + \Fib(n-1)\\
+\end{aligned}
+$
+\\ \\
+\textbf{Note} \\ \\
+Because $\forall n > 0,  |\psi^n| < \frac{\sqrt{5}}{2}$, the closest integer to $\frac{\phi^n}{\sqrt{5}}$ is equal to $\frac{\phi^n-\psi^n}{\sqrt{5}}$ which is equal to $\Fib(n)$.
+
+
+
+
+
+\end{document}

@@ -1,0 +1,1 @@
+;In general, expressions equivalent algebraically give different answers because they have a different number of variables, this program treats multiple values that are equal as values each with their own uncertainy, so when e.g. an expression A*A/A is evaluated, in terms of uncertainty A*B/C is being evaluated where A and B and C all happen to equal each other.

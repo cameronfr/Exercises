@@ -1,0 +1,26 @@
+Generic Operations with Explicit Dispatch:
+
+Adding a new type requires an implementation of the type which tags the type upon construction. Also required is a predicate to check the tag.
+
+Operations on the type must at some level explicitly dispatch, meaning that the functions at said level each must check the type of its arguments and call the correct type-specific methods.
+
+Data Directed:
+
+Adding a new type requires a package, which includes an implementatin of the type as well as an adding of the implentation to a global 2d table. Tags must still be used.
+
+Operations can reference the table with a type tag and the desired operation, meaning that no modification of operations outside the package is needed for a new type.
+
+Message Passing:
+
+Adding a new type requires defining a new procedure, with a nested dispatch procedure that implements all the operations. No tags are needed, but the generic operations that interface with the type can only have one argument.
+
+
+
+Both the style of data directed and the style of message passing can implement an "apply-generic" procedure. Thus both are clearly superior to explicity dispatch in both their ability to deal with more types and more operations here.
+
+In general, though, message passing has "smart" data and "dumb operations, while data directed has "smart" operations and "dumb" data. Another way to put it is: with message passing, the operations are under the data, while with data directed, the data are under the operations. Message passing is analogous to OOP while data directed is analogous to functional programming.
+
+Here the implementations using message passing and data directed appear to be the same (as they both use (apply-generic)), but really the methods of the data directed implementation are under the "smart" operations (which choose the correct operation given the type) in the table, while the methods of the message passing implementation are under the types.
+
+Therefore, it is easier to add more types to a message passing implementation: simply add another type under which the operations can be implemented. With a data directed implementation, adding another type requires editing all the generic operations to process said type. Similarly, it is easier to add more operations to a data directed implementation: simply add another generic operation which accepts all data types. With a message passing implementation, adding a new operation requires adding an operation to each type.
+
